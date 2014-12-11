@@ -7,7 +7,7 @@ import numpy
 # Renders the video gui.
 @get('/')
 def index():
-    env = Environment(loader=PackageLoader('app', 'templates'))
+    env = Environment(loader=PackageLoader('video-labeling-gui', 'templates'))
     template = env.get_template('video.html')
 
     videos = numpy.sort(glob.glob('./static/*.mp4'))
@@ -30,12 +30,12 @@ def form():
 
     # Save results to file.
     print 'Saving...'
-    f = open('lip_move.txt', 'w')
+    f = open('./results/lip_move.txt', 'w')
     for filename in lip_move_files:
         f.write('%s\n' % filename)
     f.close()
 
-    f = open('speech.txt', 'w')
+    f = open('./results/speech.txt', 'w')
     for filename in speech_files:
         f.write('%s\n' % filename)
     f.close()
