@@ -1,13 +1,12 @@
 # Lip movement labeling demo
 
-This is a few python scripts used to make a lip labeling GUI.
+This is a few python scripts used to make a simple video labeling GUI.
 
 ## Note
-Loading lots of video clips will take a lot of memory and potentially crash the gui (i.e. web browser). To fix this we should add pagination.
+Loading lots of video clips will take a lot of memory and potentially crash the gui (i.e. web browser). To fix this we should add pagination. Currently in `make_clips.py` there is a variable `MAX_CLIPS` that caps the number of clips to save to 10.
 
 ## Installing
-This code relies on three python libraries:
-Two are easy to install:
+This code relies on three python libraries. Two are easy to install:  
 [jinja2][jinja2] - Used to make the html page.
 ```
 pip install jinja2
@@ -18,7 +17,7 @@ pip install jinja2
 pip install bottle
 ```
 
-One is hard to install:
+One is hard to install:  
 [moviepy][moviepy] - Wraps ffmpeg, used to save out movies. This is the hardest part to install. You need ffmpeg from [here][ffmpeg] installed with libmp3lame enabled. To do this I followed the instructions [here][install]. You could just manually use ffmpeg. Unfortunately I not familiar with it, and when I saved out subclips, they didn't properly play in my browser (chrome). Subclips saved with moviepy do play properly.
 
 ## Getting started
