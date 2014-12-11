@@ -43,8 +43,8 @@ python app.py
 And in your web browser go to `http://localhost:8080/`. You should set a webpage with the video subclips you just created. Under each video are checkboxes labeled `Lip movement` and `Speech`. To label, just watch each video, and click the appropriate checkboxes.
 
 When you are done click `Submit` at the end of the webpage. This will create two log files:
-1) `lip_move.txt`
-2) `speech.txt`
++ `lip_move.txt`
++ `speech.txt`
 
 
 ### Example lip_move.txt:
