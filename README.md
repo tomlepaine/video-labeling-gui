@@ -18,17 +18,19 @@ pip install bottle
 ```
 
 One is hard to install:  
-[moviepy][moviepy] - Wraps ffmpeg, used to save out movies. This is the hardest part to install. You need ffmpeg from [here][ffmpeg] installed with libmp3lame enabled. To do this I followed the instructions [here][install]. You could just manually use ffmpeg. Unfortunately I not familiar with it, and when I saved out subclips, they didn't properly play in my browser (chrome). Subclips saved with moviepy do play properly.
+[moviepy][moviepy] - Wraps ffmpeg, used by `make_clips.py` to save out video clips. This is the hardest part to install. You need ffmpeg from [here][ffmpeg] installed with libmp3lame enabled. To do this I followed the instructions [here][install]. 
+
+Alternatively, you could ignore `make_clips.py` entirely and just use the ffmpeg cli directly. But I am not too familiar with it and when I tried that technique the videos would not play in my browser (chrome). Your mileage may vary.
 
 ## Getting started
 
-First run make clips. Currently it grabs subclips every 5 seconds. The duration of the subclips is 2 seconds. Modify this if you want it to grab subclips based on our other labels.
+First make the clips by running `make_clips.py`. Currently it grabs subclips every 5 seconds. The duration of the subclips is 2 seconds. Modify this if you want it to grab subclips based on our other labels.
 
 ```
 python make_clips.py /path/to/movie.mp4
 ```
 
-This will output a whole bunch of video files in `lip_demo/static/` directory. The gui expects the files to be there. The video files will have names of the form `video_%05d.mp4`.
+This will output a whole bunch of video files in `video-labeling-gui/static/` directory. The gui expects the files to be there. The video files will have names of the form `video_%05d.mp4`.
 
 Then to start the gui run:
 
