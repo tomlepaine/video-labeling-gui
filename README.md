@@ -18,7 +18,9 @@ pip install bottle
 ```
 
 One is hard to install:  
-[moviepy][moviepy] - Wraps ffmpeg, used by `make_clips.py` to save out video clips. This is the hardest part to install. You need ffmpeg from [here][ffmpeg] installed with libmp3lame enabled. To do this I followed the instructions [here][install]. 
+[moviepy][moviepy] - Wraps ffmpeg, used by `make_clips.py` to save out video clips. This is the hardest part to install. You need ffmpeg from [here][ffmpeg] installed with libmp3lame enabled. To install ffmpeg I followed the instructions [here][install]. 
+
+Then I had to link to an uninstalled ffmpeg, and install moviepy by hand. This is explained [here][mpinstall]. 
 
 Alternatively, you could ignore `make_clips.py` entirely and just use the ffmpeg cli directly. But I am not too familiar with it and when I tried that technique the videos would not play in my browser (chrome). Your mileage may vary.
 
@@ -54,6 +56,7 @@ When you are done click `Submit` at the end of the webpage. This will create to 
 These are all the videos you labeled as having lip movement.
 
 [moviepy]:http://zulko.github.io/moviepy/
+[mpinstall]:http://zulko.github.io/moviepy/install.html
 [ffmpeg]:https://www.ffmpeg.org/
 [jinja2]:http://jinja.pocoo.org/docs/dev/
 [bottle]:http://bottlepy.org/docs/dev/index.html
