@@ -4,6 +4,7 @@ from bottle import get, post, request, run, static_file
 from jinja2 import Environment, PackageLoader
 import numpy
 
+# Renders the video gui.
 @get('/')
 def index():
     env = Environment(loader=PackageLoader('app', 'templates'))
@@ -12,9 +13,10 @@ def index():
     videos = numpy.sort(glob.glob('./static/*.mp4'))
 
     page = template.render(videos = videos[0:25])
-    print page
+
     return page
 
+# Parses the form output.
 @post('/form')
 def form():
     checked_list = request.forms.keys()
@@ -41,8 +43,11 @@ def form():
 
     return 'Thanks.'
 
+# Boilerplate to serve static files.
+# In this case that means video files.
 @get('/static/<filename>')
 def server_static(filename):
+    # Expects files to be in './static'.
     return static_file(filename, root='./static')
 
 run(host='localhost', port=8080)
