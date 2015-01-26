@@ -1,24 +1,36 @@
 import glob
 
-from bottle import get, post, request, run, static_file
+from bottle import get, post, request, redirect, run, static_file
 from jinja2 import Environment, PackageLoader
 import numpy
 
-# Renders the video gui.
+
+# Index redirects to page 1
 @get('/')
 def index():
+    redirect('/p=1')
+
+
+# Renders the video gui.
+@get('/p=<page_num:int>')
+def index(page_num):
+    clips_per_page = 25
     env = Environment(loader=PackageLoader('video-labeling-gui', 'templates'))
     template = env.get_template('video.html')
 
     videos = numpy.sort(glob.glob('./static/*.mp4'))
 
-    page = template.render(videos = videos[0:25])
+    num_pages = len(videos) / clips_per_page
+    indices = slice(clips_per_page * (page_num - 1), clips_per_page * page_num)
+    page = template.render(num_pages=num_pages, page_num=page_num,
+                           videos=videos[indices])
 
     return page
 
+
 # Parses the form output.
-@post('/form')
-def form():
+@post('/form/p=<page_num:int>')
+def form(page_num):
     checked_list = request.forms.keys()
 
     # Determine which checkboxes are active.
@@ -30,18 +42,19 @@ def form():
 
     # Save results to file.
     print 'Saving...'
-    f = open('./results/lip_move.txt', 'w')
+    f = open('./results/lip_move_%03d.txt' % page_num, 'w')
     for filename in lip_move_files:
         f.write('%s\n' % filename)
     f.close()
 
-    f = open('./results/speech.txt', 'w')
+    f = open('./results/speech_%03d.txt' % page_num, 'w')
     for filename in speech_files:
         f.write('%s\n' % filename)
     f.close()
     print 'Done.'
 
-    return 'Thanks.'
+    redirect('/p=%d' % (page_num + 1))
+
 
 # Boilerplate to serve static files.
 # In this case that means video files.

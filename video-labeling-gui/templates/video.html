@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-    <form action="/form" method="post">
+    <form action="/form/p={{ page_num }}" method="post">
+        <h2>Page {{ page_num }} of {{ num_pages }}</h2>
         {% for video in videos %}
             <div>
             <video height="150" controls>
